@@ -1,1 +1,47 @@
-Sharla
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <label for="number">Please Enter a number</label>
+    <input type="text" id="number" name="number"><br><br>
+    <button type="button" onclick="calculateFizz()">Fizz me</button> 
+
+</body>
+</html> 
+
+<script>
+    function calculateFizz(){
+        debugger
+        var number = parseInt($('#number').val());
+
+        let outputList = [{}];
+
+        for (let i = 1; i < number; i++) {
+            if( (i % 3 == 0) && (i % 5 == 0)){
+                outputList.push({ 
+                    number: i,
+                    fizz: "FizzBuzz"
+                });
+            } else if (i % 3 == 0){
+                outputList.push({ 
+                    number: i,
+                    fizz: "Fizz"
+                });
+            } else {
+                outputList.push({ 
+                    number: i,
+                    fizz: "buzz"
+                });
+            }
+        }
+
+        debugger
+        var temp = outputList;
+    }
+
+</script>
