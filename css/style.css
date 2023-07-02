@@ -3,6 +3,25 @@ body {
   background-color: #3c373e;
   font-weight: 300; }
 
+
+table { 
+  table-layout:fixed;
+}
+
+td { 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  word-wrap: break-word;
+}
+
+@media only screen and (max-width: 300px) {
+  /* horizontal scrollbar for tables if mobile screen */
+  .tablemobile {
+      overflow-x: auto;
+      display: block;
+  }
+}
+
 p {
   color: rgba(255, 255, 255, 0.5);
   font-weight: 300; }

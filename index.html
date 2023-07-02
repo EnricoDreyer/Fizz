@@ -34,7 +34,7 @@
 
     <div class="d-flex justify-content-center mt-3">
         <div class="justify-content-center">
-        <button class="btn btn-success float-left bs-tooltip" title="Click to check your Fizz" onclick="validateFizz()">Fizz Me</button>
+        <button id="enterButton" class="btn btn-success float-left bs-tooltip" title="Click to check your Fizz" onclick="validateFizz()">Fizz Me</button>
         </div>
     </div>
     
@@ -47,7 +47,7 @@
             <table id="fizzTable" class="table table-striped custom-table">
               <thead>
                 <tr>
-                  <th scope="col">Number</th>
+                  <th scope="col" style="width: 36%;">Number</th>
                   <th scope="col">Fizz</th>
                 </tr>
               </thead>
@@ -116,5 +116,11 @@
             newRow.append('<td>' + i + '</td><td><a href="#">' + output +'</a></td>');
         }
     }
+
+    $(document).keypress(function(e){
+        if (e.which == 13){
+            $("#enterButton").click();
+        }
+    }); 
 
 </script>
