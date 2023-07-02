@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/style.css">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -35,7 +36,7 @@
 
     <div class="d-flex justify-content-center mt-3">
         <div class="justify-content-center">
-        <button class="btn btn-success float-left bs-tooltip" title="Click to check your Fizz" onclick="calculateFizz()">Fizz Me</button>
+        <button class="btn btn-success float-left bs-tooltip" title="Click to check your Fizz" onclick="validateFizz()">Fizz Me</button>
         </div>
     </div>
     
@@ -71,10 +72,39 @@
 </html> 
 
 <script>
-    function calculateFizz(){
-        debugger
+    function validateFizz(){
         var number = parseInt($('#number').val());
+
+        if(number > 9999){
+            Swal.fire({
+                title: 'That is a big Number, are you sure?',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'Confirm',
+                denyButtonText: `Deny`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    calculateFizz(number);
+                } 
+            })
+        } else {
+            if(number != 0){
+                calculateFizz(number);
+            } else {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Number may not be zero',
+                    icon: 'error',
+                    confirmButtonText: 'Cool'
+                });
+            }
+        }
+    }
+
+    function calculateFizz(number){
         var table = $('#fizzTable');
+
+        $("#fizzTable tbody tr").remove();
 
         let outputList = [];
 
@@ -96,8 +126,6 @@
                 });
             }
         }
-
-        debugger
 
         outputList.forEach(element => {
             var newRow = $('<tr>').appendTo(table);
