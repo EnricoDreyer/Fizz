@@ -2,14 +2,70 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="css/style.css">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 
 <body>
 
-    <label for="number">Please Enter a number</label>
-    <input type="text" id="number" name="number"><br><br>
-    <button type="button" onclick="calculateFizz()">Fizz me</button> 
+    <div class="d-flex justify-content-center my-3">
+        <div class="justify-content-center">
+            <h2 class="text-white" for="number">Please Enter a number</h2>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center my-3">
+        <div class="justify-content-center">
+            <input type="text" id="number" name="number">
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center mt-3">
+        <div class="justify-content-center">
+        <button class="btn btn-success float-left bs-tooltip" title="Click to check your Fizz" onclick="calculateFizz()">Fizz Me</button>
+        </div>
+    </div>
+    
+    
+    <div class="content">
+        <div class="container">
+
+          <div class="table-responsive">
+    
+            <table id="fizzTable" class="table table-striped custom-table">
+              <thead>
+                <tr>
+                  <th scope="col">Number</th>
+                  <th scope="col">Fizz</th>
+                </tr>
+              </thead>
+              <tbody id="table-body">
+              </tbody>
+            </table>
+          </div>
+    
+    
+        </div>
+    
+      </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
 
 </body>
 </html> 
@@ -18,10 +74,11 @@
     function calculateFizz(){
         debugger
         var number = parseInt($('#number').val());
+        var table = $('#fizzTable');
 
-        let outputList = [{}];
+        let outputList = [];
 
-        for (let i = 1; i < number; i++) {
+        for (let i = 1; i <= number; i++) {
             if( (i % 3 == 0) && (i % 5 == 0)){
                 outputList.push({ 
                     number: i,
@@ -35,13 +92,17 @@
             } else {
                 outputList.push({ 
                     number: i,
-                    fizz: "buzz"
+                    fizz: "Buzz"
                 });
             }
         }
 
         debugger
-        var temp = outputList;
+
+        outputList.forEach(element => {
+            var newRow = $('<tr>').appendTo(table);
+            newRow.append('<td>' + element.number + '</td><td><a href="#">' + element.fizz +'</a></td>');
+        });
     }
 
 </script>
