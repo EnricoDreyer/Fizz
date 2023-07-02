@@ -8,15 +8,13 @@
     
     <link rel="stylesheet" href="fonts/icomoon/style.css">
     
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     
     <!-- Style -->
     <link rel="stylesheet" href="css/style.css">
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- Sweet Alert-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
@@ -64,9 +62,7 @@
       </div>
 
     <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
 
 </body>
 </html> 
@@ -80,8 +76,8 @@
                 title: 'That is a big Number, are you sure?',
                 showDenyButton: true,
                 showCancelButton: true,
-                confirmButtonText: 'Confirm',
-                denyButtonText: `Deny`,
+                confirmButtonText: 'Yes',
+                denyButtonText: `No`,
             }).then((result) => {
                 if (result.isConfirmed) {
                     calculateFizz(number);
@@ -106,31 +102,19 @@
 
         $("#fizzTable tbody tr").remove();
 
-        let outputList = [];
-
         for (let i = 1; i <= number; i++) {
+            var output = "";
             if( (i % 3 == 0) && (i % 5 == 0)){
-                outputList.push({ 
-                    number: i,
-                    fizz: "FizzBuzz"
-                });
+                output = "FizzBuzz";
             } else if (i % 3 == 0){
-                outputList.push({ 
-                    number: i,
-                    fizz: "Fizz"
-                });
+                output = "Fizz";
             } else {
-                outputList.push({ 
-                    number: i,
-                    fizz: "Buzz"
-                });
+                output = "Buzz";
             }
-        }
 
-        outputList.forEach(element => {
             var newRow = $('<tr>').appendTo(table);
-            newRow.append('<td>' + element.number + '</td><td><a href="#">' + element.fizz +'</a></td>');
-        });
+            newRow.append('<td>' + i + '</td><td><a href="#">' + output +'</a></td>');
+        }
     }
 
 </script>
