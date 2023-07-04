@@ -69,32 +69,43 @@
 
 <script>
     function validateFizz(){
+        
         var number = parseInt($('#number').val());
 
-        if(number > 9999){
-            Swal.fire({
-                title: 'That is a big Number, are you sure?',
-                showDenyButton: true,
-                showCancelButton: true,
-                confirmButtonText: 'Yes',
-                denyButtonText: `No`,
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    calculateFizz(number);
-                } 
-            })
-        } else {
-            if(number != 0){
-                calculateFizz(number);
-            } else {
+        if(!isNaN(number)){
+            if(number > 9999){
                 Swal.fire({
-                    title: 'Error!',
-                    text: 'Number may not be zero',
-                    icon: 'error',
-                    confirmButtonText: 'Cool'
-                });
+                    title: 'That Is a Big Number, Are You Sure?',
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                    denyButtonText: `No`,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        calculateFizz(number);
+                    } 
+                })
+            } else {
+                if(number != 0){
+                    calculateFizz(number);
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Number May Not Be Zero',
+                        icon: 'error',
+                        confirmButtonText: 'Cool'
+                    });
+                }
             }
+        } else {
+            Swal.fire({
+                title: 'Error!',
+                text: 'No Number Entered',
+                icon: 'error',
+                confirmButtonText: 'My Bad'
+            });
         }
+
     }
 
     function calculateFizz(number){
@@ -108,8 +119,10 @@
                 output = "FizzBuzz";
             } else if (i % 3 == 0){
                 output = "Fizz";
-            } else {
+            } else if (i % 5 == 0){
                 output = "Buzz";
+            } else {
+                output= i.toString();
             }
 
             var newRow = $('<tr>').appendTo(table);
